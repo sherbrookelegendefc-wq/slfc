@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0a0e17">
+<meta name="color-scheme" content="dark">
+<link rel="icon" type="image/png" href="https://sherbrookelegendefc-wq.github.io/slfc/logo.png">
+<link rel="apple-touch-icon" href="https://sherbrookelegendefc-wq.github.io/slfc/logo.png">
+<title>SLFC 2 — Bilan Hiver 2025-2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0e17;
+  --bg-elevated:#121824;
+  --bg-card:#1a1f2e;
+  --bg-hover:#252b3d;
+  --primary:#16a34a;
+  --primary-glow:rgba(22,163,74,0.3);
+  --gold:#d4890a;
+  --gold-glow:rgba(212,137,10,0.3);
+  --blue:#2563eb;
+  --red:#e8200a;
+  --green:#16a34a;
+  --text:#f8fafc;
+  --text-secondary:#94a3b8;
+  --text-muted:#64748b;
+  --glass:rgba(255,255,255,0.03);
+  --border:rgba(255,255,255,0.06);
+  --shadow:0 8px 32px rgba(0,0,0,0.4);
+  --radius:16px;
+  --radius-lg:24px;
+  --radius-xl:32px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;background:#0a0e17 !important;min-height:100%;}
+body{background:#0a0e17 !important;color:var(--text);font-family:'DM Sans',sans-serif;font-size:14px;line-height:1.5;min-height:100vh;overflow-x:hidden;}
+
+.tag{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);}
+
+.ambient{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
+.ambient::before{content:'';position:absolute;top:-50%;left:-20%;width:800px;height:800px;background:radial-gradient(circle, rgba(22,163,74,0.06) 0%, transparent 70%);animation:pulse 8s ease-in-out infinite;}
+.ambient::after{content:'';position:absolute;bottom:-30%;right:-10%;width:600px;height:600px;background:radial-gradient(circle, rgba(37,99,235,0.04) 0%, transparent 70%);animation:pulse 10s ease-in-out infinite reverse;}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:0.5;}50%{transform:scale(1.1);opacity:0.8;}}
+
+h1,h2,h3,h4{font-family:'Barlow Condensed',sans-serif;font-weight:900;letter-spacing:-0.02em;}
+
+.app{position:relative;max-width:960px;margin:0 auto;min-height:100vh;background:#0a0e17;}
+.layout{display:flex;flex-direction:row;min-height:100vh;position:relative;z-index:1;background:#0a0e17;}
+
+.sidebar{width:220px;flex-shrink:0;border-right:1px solid var(--border);padding:24px 16px;display:flex;flex-direction:column;gap:4px;position:sticky;top:0;height:100vh;overflow-y:auto;background:rgba(10,14,23,0.8);backdrop-filter:blur(20px);z-index:100;}
+
+.logo{display:flex;align-items:center;gap:10px;padding:12px;margin-bottom:20px;background:var(--glass);border:1px solid var(--border);border-radius:var(--radius);position:relative;overflow:hidden;}
+.logo::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.05) 50%, transparent 60%);animation:shimmer 3s infinite;}
+@keyframes shimmer{0%{transform:translateX(-100%);}100%{transform:translateX(100%);}}
+
+.logo-icon{width:38px;height:38px;background:var(--primary);border-radius:10px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px var(--primary-glow);flex-shrink:0;}
+.logo-icon svg{width:20px;height:20px;fill:none;stroke:#fff;stroke-width:2;}
+.logo-text{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:20px;font-style:italic;letter-spacing:-0.5px;color:var(--text);}
+.logo-sub{font-size:10px;color:var(--text-muted);font-weight:500;letter-spacing:2px;text-transform:uppercase;}
+
+.nav-btn{width:100%;display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:var(--radius);border:none;background:transparent;color:var(--text-secondary);cursor:pointer;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;transition:all .2s;text-align:left;position:relative;}
+.nav-btn::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:3px;height:0;background:var(--primary);border-radius:0 3px 3px 0;transition:height 0.3s;}
+.nav-btn:hover{background:var(--bg-hover);color:var(--text);}
+.nav-btn:hover::before{height:20px;}
+.nav-btn.active{background:var(--primary);color:#fff;}
+.nav-btn.active::before{height:0;}
+.nav-btn svg{width:16px;height:16px;flex-shrink:0;}
+
+.main{flex:1;min-width:0;padding:28px 24px 100px;overflow-x:hidden;}
+
+.share-btn{position:fixed;top:16px;right:16px;z-index:200;background:var(--bg-card);border:1px solid var(--border);border-radius:50px;padding:8px 16px;display:flex;align-items:center;gap:7px;cursor:pointer;color:var(--text);font-size:13px;font-weight:500;transition:all .2s;backdrop-filter:blur(10px);box-shadow:var(--shadow);}
+.share-btn:hover{background:var(--primary);border-color:var(--primary);color:#fff;transform:translateY(-2px);box-shadow:0 8px 30px var(--primary-glow);}
+.share-btn svg{width:14px;height:14px;}
+
+.card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-xl);padding:24px;position:relative;overflow:hidden;transition:all 0.3s;}
+.card::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg, rgba(255,255,255,0.03) 0%, transparent 50%);pointer-events:none;}
+.card:hover{transform:translateY(-2px);border-color:rgba(255,255,255,0.1);box-shadow:var(--shadow);}
+.card-sm{background:var(--bg-elevated);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px;}
+
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.grid4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;}
+
+.page-title{font-size:clamp(40px,8vw,64px);font-weight:900;font-style:italic;letter-spacing:-1px;line-height:1;margin-bottom:6px;background:linear-gradient(135deg, #fff 0%, var(--text-secondary) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.page-sub{font-size:14px;color:var(--text-secondary);margin-bottom:28px;}
+
+.badge{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 10px;border-radius:50px;}
+.badge-red{background:rgba(232,32,10,.15);color:var(--red);border:1px solid rgba(232,32,10,.3);}
+.badge-gold{background:rgba(212,137,10,.15);color:var(--gold);border:1px solid rgba(212,137,10,.3);}
+.badge-blue{background:rgba(37,99,235,.15);color:var(--blue);border:1px solid rgba(37,99,235,.3);}
+.badge-green{background:rgba(22,163,74,.15);color:var(--green);border:1px solid rgba(22,163,74,.3);}
+
+.tbl{width:100%;border-collapse:separate;border-spacing:0;}
+.tbl thead tr th{text-align:left;padding:12px 16px;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);border-bottom:1px solid var(--border);}
+.tbl tbody tr{border-bottom:1px solid var(--border);transition:all .15s;}
+.tbl tbody tr:hover{background:var(--bg-hover);}
+.tbl td{padding:14px 16px;font-size:14px;}
+.tbl .rank{font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;font-style:normal;color:var(--text-muted);}
+.tbl .pname{font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;font-style:normal;letter-spacing:0;}
+
+.pill{display:inline-flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;font-style:italic;padding:2px 14px;border-radius:10px;}
+.pill-red{background:var(--red);color:#fff;box-shadow:0 4px 20px rgba(232,32,10,0.3);}
+.pill-green{background:rgba(22,163,74,.15);color:var(--green);border:1px solid rgba(22,163,74,.3);}
+.pill-blue{background:rgba(37,99,235,.15);color:var(--blue);border:1px solid rgba(37,99,235,.3);}
+.pill-gold{background:rgba(212,137,10,.15);color:var(--gold);border:1px solid rgba(212,137,10,.3);}
+.pill-primary{background:var(--primary);color:#fff;box-shadow:0 4px 20px var(--primary-glow);}
+
+.detail-tag{font-size:11px;color:var(--text-secondary);background:var(--bg-hover);border:1px solid var(--border);padding:3px 10px;border-radius:8px;display:inline-block;max-width:220px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+
+.stat-card{background:var(--bg-elevated);border:1px solid var(--border);border-radius:var(--radius-xl);padding:24px 28px;position:relative;overflow:hidden;}
+.stat-card::after{content:'';position:absolute;top:0;right:0;width:100px;height:100px;background:radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);opacity:0.3;pointer-events:none;}
+.stat-num{font-family:'Barlow Condensed',sans-serif;font-size:clamp(40px,7vw,64px);font-weight:900;font-style:italic;line-height:1;text-shadow:0 0 40px currentColor;}
+
+.mvp-wrap{background:rgba(212,137,10,.08);border:1px solid rgba(212,137,10,.25);border-radius:var(--radius-xl);padding:32px;position:relative;overflow:hidden;}
+.mvp-wrap::before{content:'MVP';position:absolute;right:-20px;top:-20px;font-family:'Barlow Condensed',sans-serif;font-size:180px;font-weight:900;font-style:italic;color:rgba(212,137,10,.05);line-height:1;pointer-events:none;}
+
+.bar-wrap{height:5px;background:var(--bg-hover);border-radius:3px;overflow:hidden;}
+.bar-fill{height:100%;border-radius:3px;position:relative;overflow:hidden;}
+.bar-fill::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);animation:shimmer-bar 2s infinite;}
+@keyframes shimmer-bar{0%{transform:translateX(-100%);}100%{transform:translateX(100%);}}
+
+.toast{position:fixed;top:20px;left:50%;transform:translateX(-50%) translateY(-80px);background:var(--bg-card);color:var(--text);padding:10px 20px;border-radius:50px;font-size:13px;font-weight:500;z-index:999;transition:transform .3s ease;pointer-events:none;border:1px solid var(--border);box-shadow:var(--shadow);}
+.toast.show{transform:translateX(-50%) translateY(0);}
+
+.bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(10,14,23,0.97);backdrop-filter:blur(20px);border-top:1px solid var(--border);padding:8px 0;padding-bottom:max(8px,env(safe-area-inset-bottom));z-index:100;}
+.bnav-inner{display:flex;justify-content:space-around;}
+.bnav-btn{display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 8px;border:none;background:transparent;color:var(--text-muted);cursor:pointer;transition:color .2s;min-width:44px;position:relative;}
+.bnav-btn::before{content:'';position:absolute;top:-8px;width:4px;height:4px;border-radius:50%;background:var(--primary);opacity:0;transition:all 0.3s;}
+.bnav-btn svg{width:20px;height:20px;}
+.bnav-btn span{font-size:9px;font-weight:500;text-transform:uppercase;letter-spacing:.5px;}
+.bnav-btn.active{color:var(--primary);}
+.bnav-btn.active::before{opacity:1;box-shadow:0 0 10px var(--primary);}
+
+@media(max-width:700px){
+  .sidebar{display:none;}
+  .bottom-nav{display:block;}
+  .main{padding:60px 12px 100px;}
+  .page-title{font-size:36px;margin-bottom:4px;background:none;-webkit-background-clip:unset;-webkit-text-fill-color:#f8fafc;color:#f8fafc;}
+  .page-sub{font-size:12px;margin-bottom:18px;}
+  .share-btn{top:12px;right:12px;padding:6px 12px;font-size:11px;gap:5px;}
+  .grid4{grid-template-columns:repeat(2,1fr);gap:10px;}
+  .grid3{grid-template-columns:1fr;gap:10px;}
+  .grid2{grid-template-columns:1fr;gap:10px;}
+  .card{padding:16px;border-radius:20px;}
+  .card-sm{padding:14px;border-radius:18px;}
+  .stat-card{padding:16px 18px;}
+  .stat-num{font-size:clamp(32px,10vw,52px);}
+  .stat-card .stat-num{font-size:36px;}
+  .mvp-wrap{padding:20px;}
+  .mvp-wrap::before{font-size:100px;}
+  .col-detail{display:none;}
+  .tbl .rank{font-size:16px;}
+  .tbl .pname{font-size:15px;}
+  .tbl td{padding:10px 12px;}
+  .tbl th{padding:10px 12px;}
+  .bnav-btn{min-width:36px;padding:5px 4px;}
+  .bnav-btn span{font-size:8px;letter-spacing:0;}
+  .bnav-btn svg{width:18px;height:18px;}
+  #hdm-podium{grid-template-columns:1fr !important;}
+  .ambient{display:none;}
+}
+@media(max-width:380px){
+  .grid4{grid-template-columns:1fr;}
+  .main{padding:12px 10px 100px;}
+  .bnav-btn span{display:none;}
+  .bnav-btn{padding:8px 6px;}
+  .bnav-btn svg{width:22px;height:22px;}
+}
+</style>
+</head>
+<body>
+<div class="ambient"></div>
+<div class="app">
+  <button class="share-btn" onclick="share()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+    Partager
+  </button>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="logo">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <div>
+          <div class="logo-text">SLFC 2</div>
+          <div class="logo-sub">Hiver 25-26</div>
+        </div>
+      </div>
+      <button class="nav-btn active" data-tab="home" onclick="nav(this,'home')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Tableau de bord
+      </button>
+      <button class="nav-btn" data-tab="joueurs" onclick="nav(this,'joueurs')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Effectif
+      </button>
+      <button class="nav-btn" data-tab="mvp" onclick="nav(this,'mvp')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        Honneurs
+      </button>
+      <button class="nav-btn" data-tab="bilan" onclick="nav(this,'bilan')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        Bilan & Analyse
+      </button>
+      <button class="nav-btn" data-tab="statsindiv" onclick="nav(this,'statsindiv')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        MVP
+      </button>
+      <button class="nav-btn" data-tab="buteurs" onclick="nav(this,'buteurs')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        Buteurs
+      </button>
+      <button class="nav-btn" data-tab="passeurs" onclick="nav(this,'passeurs')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+        Passeurs
+      </button>
+    </aside>
+
+    <main class="main">
+
+      <!-- ── TAB HOME ── -->
+      <div id="tab-home">
+        <div class="page-title">Résumé.</div>
+        <div class="page-sub">Analyse finale — Saison Hiver 2025-2026</div>
+
+        <div class="card" style="margin-bottom:16px;background:var(--bg-elevated);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;padding:20px 24px;">
+          <div>
+            <div class="tag" style="margin-bottom:8px;color:var(--primary);">Ligue</div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(20px,5vw,28px);font-weight:900;font-style:italic;letter-spacing:-0.5px;line-height:1.1;">Ligue Senior Régional Masculin</div>
+            <div style="font-size:11px;color:var(--text-secondary);font-weight:500;text-transform:uppercase;letter-spacing:1.5px;margin-top:4px;">Senior Masculin SM D2</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+            <div style="text-align:center;">
+              <div style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(36px,10vw,52px);font-weight:900;font-style:italic;line-height:1;color:var(--primary);text-shadow:0 0 40px var(--primary-glow);">9<span style="font-size:20px;color:var(--text-muted);">/10</span></div>
+              <div class="tag">Classement</div>
+            </div>
+            <div style="width:1px;height:40px;background:var(--border);"></div>
+            <div style="display:flex;gap:14px;flex-wrap:wrap;">
+              <div style="text-align:center;"><div style="font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;">10</div><div class="tag">PTS</div></div>
+              <div style="text-align:center;"><div style="font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;color:var(--green);">32</div><div class="tag">BP</div></div>
+              <div style="text-align:center;"><div style="font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;">61</div><div class="tag">BC</div></div>
+              <div style="text-align:center;"><div style="font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:900;color:var(--red);">-29</div><div class="tag">DIFF</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid3" style="margin-bottom:16px;">
+          <div class="stat-card">
+            <div class="tag" style="margin-bottom:14px;">Bilan</div>
+            <div style="display:flex;align-items:center;gap:10px;">
+              <div style="text-align:center;"><div class="stat-num" style="color:var(--green);font-size:44px;">3</div><div class="tag">V</div></div>
+              <div class="stat-num" style="color:var(--border);font-size:28px;">·</div>
+              <div style="text-align:center;"><div class="stat-num" style="color:var(--text-muted);font-size:44px;">2</div><div class="tag">N</div></div>
+              <div class="stat-num" style="color:var(--border);font-size:28px;">·</div>
+              <div style="text-align:center;"><div class="stat-num" style="color:var(--red);font-size:44px;">9</div><div class="tag">D</div></div>
+            </div>
+          </div>
+          <div class="stat-card" style="border-color:rgba(37,99,235,.2);">
+            <div class="tag" style="color:var(--blue);margin-bottom:14px;">Attaque</div>
+            <div class="stat-num" style="color:var(--blue);font-size:52px;text-shadow:0 0 40px rgba(37,99,235,0.3);">32</div>
+            <div style="display:flex;align-items:center;gap:6px;margin-top:8px;">
+              <div class="tag">Buts marqués</div>
+              <span style="font-family:'Barlow Condensed',sans-serif;font-size:13px;color:var(--text-secondary);">· moy. 2.3/match</span>
+            </div>
+          </div>
+          <div class="stat-card" style="border-color:rgba(232,32,10,.25);">
+            <div class="tag" style="color:var(--red);margin-bottom:14px;">Défense</div>
+            <div class="stat-num" style="font-size:52px;">61</div>
+            <div style="display:flex;align-items:center;gap:6px;margin-top:8px;">
+              <div class="tag">Buts encaissés</div>
+              <span style="font-family:'Barlow Condensed',sans-serif;font-size:13px;color:var(--text-secondary);">· moy. 4.4/match</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid4">
+          <div class="card" style="cursor:pointer;background:var(--bg-elevated);" onclick="navTo('buteurs')">
+            <div class="tag" style="color:var(--blue);margin-bottom:12px;">Meilleur Buteur</div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;font-style:italic;margin-bottom:6px;">Christophe Larouche</div>
+            <div style="display:flex;align-items:baseline;gap:8px;">
+              <div class="stat-num" style="font-size:44px;color:var(--blue);text-shadow:0 0 30px rgba(37,99,235,0.3);">10</div>
+              <div style="font-size:13px;color:var(--text-secondary);">buts</div>
+            </div>
+          </div>
+          <div class="card" style="cursor:pointer;" onclick="navTo('passeurs')">
+            <div class="tag" style="color:var(--green);margin-bottom:12px;">Meilleur Passeur</div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;font-style:italic;margin-bottom:6px;">Zouhair El Mahdi</div>
+            <div style="display:flex;align-items:baseline;gap:8px;">
+              <div class="stat-num" style="font-size:44px;color:var(--green);text-shadow:0 0 30px rgba(22,163,74,0.3);">7</div>
+              <div style="font-size:13px;color:var(--text-secondary);">passes décisives</div>
+            </div>
+          </div>
+          <div class="card" style="cursor:pointer;background:rgba(212,137,10,.06);border-color:rgba(212,137,10,.25);" onclick="navTo('statsindiv')">
+            <div class="tag" style="color:var(--gold);margin-bottom:12px;">MVP Saison</div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;font-style:italic;margin-bottom:6px;">Christophe Larouche</div>
+            <div style="display:flex;align-items:baseline;gap:8px;">
+              <div class="stat-num" style="font-size:44px;color:var(--gold);text-shadow:0 0 30px rgba(212,137,10,0.3);">3</div>
+              <div style="font-size:13px;color:var(--text-secondary);">fois HDM</div>
+            </div>
+          </div>
+          <div class="card" style="cursor:pointer;background:rgba(37,99,235,.04);border-color:rgba(37,99,235,.2);" onclick="navTo('mvp')">
+            <div class="tag" style="color:var(--blue);margin-bottom:12px;">Esprit Légende</div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:900;font-style:italic;margin-bottom:6px;">Joseph Junior Pierre</div>
+            <div style="font-size:11px;color:var(--text-secondary);margin-top:6px;font-style:italic;">"Force tranquille de l'équipe"</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── TAB HONNEURS ── -->
+      <div id="tab-mvp" style="display:none;">
+        <div class="page-title">Honneurs.</div>
+        <div class="page-sub">Distinctions individuelles de la saison</div>
+        <div class="mvp-wrap" style="margin-bottom:20px;">
+          <span class="badge badge-gold" style="margin-bottom:16px;">Joueur de la saison</span>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:clamp(36px,7vw,56px);font-weight:900;font-style:italic;letter-spacing:-1px;line-height:1;margin-bottom:16px;color:var(--gold);text-shadow:0 0 40px rgba(212,137,10,0.3);">Christophe Larouche</div>
+          <p style="color:var(--text-secondary);max-width:500px;line-height:1.6;margin-bottom:24px;">Le véritable moteur offensif de l'équipe. Meilleur buteur de loin avec 10 réalisations, il a souvent porté l'équipe sur ses épaules dans les moments décisifs.</p>
+          <div style="display:flex;gap:28px;flex-wrap:wrap;">
+            <div><div class="stat-num" style="color:var(--gold);font-size:44px;">3</div><div class="tag">fois Homme du Match</div></div>
+            <div style="width:1px;background:var(--border);"></div>
+            <div><div class="stat-num" style="font-size:44px;">21</div><div class="tag">Nominations</div></div>
+            <div style="width:1px;background:var(--border);"></div>
+            <div><div class="stat-num" style="font-size:44px;">12</div><div class="tag">Matchs joués</div></div>
+          </div>
+        </div>
+        <div class="grid2" style="margin-bottom:20px;">
+          <div class="card" style="border-color:rgba(37,99,235,.2);">
+            <span class="badge badge-blue" style="margin-bottom:12px;">Meilleur Buteur</span>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:900;font-style:italic;margin-bottom:8px;">Christophe Larouche</div>
+            <div class="stat-num" style="font-size:48px;color:var(--blue);text-shadow:0 0 40px rgba(37,99,235,0.3);">10 <span style="font-size:16px;color:var(--text-secondary);font-style:normal;font-weight:400;">buts</span></div>
+            <p style="color:var(--text-secondary);font-size:13px;margin-top:12px;">Plus de 31% des réalisations de l'équipe.</p>
+          </div>
+          <div class="card" style="border-color:rgba(22,163,74,.2);">
+            <span class="badge badge-green" style="margin-bottom:12px;">Meilleur Passeur</span>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:900;font-style:italic;margin-bottom:8px;">Zouhair El Mahdi</div>
+            <div class="stat-num" style="font-size:48px;color:var(--green);text-shadow:0 0 40px rgba(22,163,74,0.3);">7 <span style="font-size:16px;color:var(--text-secondary);font-style:normal;font-weight:400;">passes</span></div>
+            <p style="color:var(--text-secondary);font-size:13px;margin-top:12px;">Chef d'orchestre avec 5 buts en plus de ses 7 passes.</p>
+          </div>
+        </div>
+        <div class="card" style="background:rgba(37,99,235,.04);border-color:rgba(37,99,235,.2);margin-bottom:20px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+            <div>
+              <span class="badge badge-blue" style="margin-bottom:12px;">Prix Esprit Légende</span>
+              <div style="font-family:'Barlow Condensed',sans-serif;font-size:36px;font-weight:900;font-style:italic;letter-spacing:-1px;line-height:1;margin-bottom:12px;">Joseph Junior Pierre</div>
+              <div style="width:32px;height:2px;background:var(--primary);margin-bottom:16px;"></div>
+              <p style="color:var(--text-secondary);font-size:14px;line-height:1.7;max-width:480px;">La force tranquille de l'équipe. Toujours là quand il le faut, sans jamais chercher la lumière. Joseph incarne l'abnégation et le dévouement collectif — le genre de joueur sans lequel une équipe ne tient pas debout.</p>
+            </div>
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="rgba(37,99,235,.2)" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+        </div>
+        <div class="card">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:8px;">
+            Podium Homme du Match
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+          </div>
+          <div class="grid3" id="hdm-podium"></div>
+        </div>
+      </div>
+
+      <!-- ── TAB BILAN ── -->
+      <div id="tab-bilan" style="display:none;">
+        <div class="page-title">Analyse.</div>
+        <div class="page-sub">Radiographie stratégique d'une saison de construction</div>
+        <div class="grid2" style="margin-bottom:16px;">
+          <div class="card-sm" style="border-color:rgba(37,99,235,.2);">
+            <div class="tag" style="color:var(--blue);margin-bottom:10px;">Efficacité Attaque</div>
+            <div class="stat-num" style="font-size:48px;color:var(--blue);text-shadow:0 0 40px rgba(37,99,235,0.3);">2.3</div>
+            <div class="tag" style="margin-top:8px;">Buts / match</div>
+          </div>
+          <div class="card-sm" style="border-color:rgba(232,32,10,.25);">
+            <div class="tag" style="color:var(--red);margin-bottom:10px;">Perméabilité Défense</div>
+            <div class="stat-num" style="font-size:48px;">4.4</div>
+            <div class="tag" style="margin-top:8px;">Buts encaissés / match</div>
+          </div>
+        </div>
+        <div class="card" style="margin-bottom:16px;">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:20px;">Répartition de l'influence</div>
+          <div style="display:flex;flex-direction:column;gap:16px;" id="influence-bars"></div>
+        </div>
+        <div class="grid2">
+          <div class="card" style="background:rgba(37,99,235,.05);border-color:rgba(37,99,235,.2);">
+            <div class="tag" style="color:var(--blue);margin-bottom:12px;">Force n°1</div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:900;font-style:italic;line-height:1;margin-bottom:12px;">Capable de Battre N'importe Qui.</div>
+            <p style="color:var(--text-secondary);font-size:13px;line-height:1.6;">Quand l'équipe est dans un bon jour, elle peut rivaliser avec n'importe quelle formation de la division.</p>
+          </div>
+          <div class="card" style="border-color:rgba(232,32,10,.2);">
+            <div class="tag" style="color:var(--red);margin-bottom:12px;">Point de rupture</div>
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:900;font-style:italic;line-height:1;margin-bottom:12px;">Capable de Perdre Contre N'importe Qui.</div>
+            <p style="color:var(--text-secondary);font-size:13px;line-height:1.6;">L'irrégularité reste le talon d'Achille. Les mêmes joueurs capables du meilleur peuvent livrer le pire dans la même semaine.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── TAB BUTEURS ── -->
+      <div id="tab-buteurs" style="display:none;">
+        <div class="page-title">Buteurs.</div>
+        <div class="page-sub">Classement officiel et détail des réalisations</div>
+        <div class="card" style="padding:0;overflow:hidden;">
+          <div style="overflow-x:auto;"><table class="tbl" id="buteurs-table"></table></div>
+        </div>
+      </div>
+
+      <!-- ── TAB PASSEURS ── -->
+      <div id="tab-passeurs" style="display:none;">
+        <div class="page-title">Passeurs.</div>
+        <div class="page-sub">Les architectes du jeu collectif</div>
+        <div class="card" style="padding:0;overflow:hidden;">
+          <div style="overflow-x:auto;"><table class="tbl" id="passeurs-table"></table></div>
+        </div>
+      </div>
+
+      <!-- ── TAB JOUEURS ── -->
+      <div id="tab-joueurs" style="display:none;">
+        <div class="page-title">Effectif.</div>
+        <div class="page-sub">14 joueurs — Saison Hiver 2025-2026</div>
+        <div class="card" style="padding:0;overflow:hidden;">
+          <div style="overflow-x:auto;"><table class="tbl" id="joueurs-table"></table></div>
+        </div>
+      </div>
+
+      <!-- ── TAB STATSINDIV (MVP) ── -->
+      <div id="tab-statsindiv" style="display:none;">
+        <div class="page-title">MVP.</div>
+        <div class="page-sub">Distinctions individuelles — Saison Hiver 2025-2026</div>
+
+        <div class="card" style="padding:0;overflow:hidden;margin-bottom:20px;">
+          <div style="padding:18px 20px 14px;border-bottom:1px solid var(--border);">
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;">Homme du Match</div>
+          </div>
+          <div style="overflow-x:auto;">
+            <table class="tbl">
+              <thead><tr><th>Rang</th><th>Joueur</th><th style="text-align:center">Votes</th><th class="col-detail">Détail</th></tr></thead>
+              <tbody>
+                <tr style="background:rgba(22,163,74,0.08);border-left:3px solid var(--primary);">
+                  <td class="rank" style="color:var(--primary);">#1</td>
+                  <td class="pname" style="color:var(--text);">Christophe Larouche</td>
+                  <td style="text-align:center"><span class="pill pill-primary">3</span></td>
+                  <td class="col-detail"><span class="detail-tag">M6, M10, M12</span></td>
+                </tr>
+                <tr><td class="rank">#2</td><td class="pname">Zouhair El Mahdi</td><td style="text-align:center"><span class="pill pill-gold">2</span></td><td class="col-detail"><span class="detail-tag">M4, M5</span></td></tr>
+                <tr><td class="rank">#3</td><td class="pname">Amir Riahi</td><td style="text-align:center"><span class="pill pill-blue">1</span></td><td class="col-detail"><span class="detail-tag">M7</span></td></tr>
+                <tr><td class="rank">#3</td><td class="pname">Wassim Aloui</td><td style="text-align:center"><span class="pill pill-blue">1</span></td><td class="col-detail"><span class="detail-tag">M3</span></td></tr>
+                <tr><td class="rank">#3</td><td class="pname">Merouane Amalou</td><td style="text-align:center"><span class="pill pill-blue">1</span></td><td class="col-detail"><span class="detail-tag">M8</span></td></tr>
+                <tr><td class="rank">#3</td><td class="pname">Raid Youssfi</td><td style="text-align:center"><span class="pill pill-blue">1</span></td><td class="col-detail"><span class="detail-tag">M9</span></td></tr>
+                <tr><td class="rank">#3</td><td class="pname">Samuel Benoit</td><td style="text-align:center"><span class="pill pill-blue">1</span></td><td class="col-detail"><span class="detail-tag">M11</span></td></tr>
+                <tr><td class="rank">#3</td><td class="pname">Joseph Junior Pierre</td><td style="text-align:center"><span class="pill pill-blue">1</span></td><td class="col-detail"><span class="detail-tag">M13</span></td></tr>
+                <tr><td class="rank">#3</td><td class="pname">Guillermo Gonzalez</td><td style="text-align:center"><span class="pill pill-blue">1</span></td><td class="col-detail"><span class="detail-tag">M14</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card" style="padding:0;overflow:hidden;">
+          <div style="padding:18px 20px 14px;border-bottom:1px solid var(--border);">
+            <div style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;">Nominations Homme du Match <span style="font-size:12px;color:var(--text-muted);font-weight:400;letter-spacing:0;">(votes cumulés)</span></div>
+          </div>
+          <div style="overflow-x:auto;">
+            <table class="tbl">
+              <thead><tr><th>Rang</th><th>Joueur</th><th style="text-align:center">Votes</th><th class="col-detail">Détail</th></tr></thead>
+              <tbody>
+                <tr><td class="rank">#1</td><td class="pname">Christophe Larouche</td><td style="text-align:center"><span class="pill pill-primary">21</span></td><td class="col-detail"><span class="detail-tag">M3:1·M6:3(HDM)·M8:1·M10:6(HDM)·M12:7(HDM)·M14:3</span></td></tr>
+                <tr><td class="rank">#2</td><td class="pname">Zouhair El Mahdi</td><td style="text-align:center"><span class="pill pill-gold">14</span></td><td class="col-detail"><span class="detail-tag">M3:1·M4:7(HDM)·M5:4(HDM)·M8:2</span></td></tr>
+                <tr><td class="rank">#3</td><td class="pname">Amir Riahi</td><td style="text-align:center"><span class="pill pill-blue">10</span></td><td class="col-detail"><span class="detail-tag">M3:1·M5:1·M6:2·M7:6(HDM)</span></td></tr>
+                <tr><td class="rank">#4</td><td class="pname">Wassim Aloui</td><td style="text-align:center"><span class="pill pill-blue">10</span></td><td class="col-detail"><span class="detail-tag">M3:4(HDM)·M6:1·M9:1·M10:1·M11:2·M12:1</span></td></tr>
+                <tr><td class="rank">#5</td><td class="pname">Merouane Amalou</td><td style="text-align:center"><span class="pill" style="background:var(--bg-hover);color:var(--text);border:1px solid var(--border);">9</span></td><td class="col-detail"><span class="detail-tag">M3:2·M8:5(HDM)·M11:2</span></td></tr>
+                <tr><td class="rank">#6</td><td class="pname">Raid Youssfi</td><td style="text-align:center"><span class="pill" style="background:var(--bg-hover);color:var(--text);border:1px solid var(--border);">7</span></td><td class="col-detail"><span class="detail-tag">M9:6(HDM)·M14:1</span></td></tr>
+                <tr><td class="rank">#6</td><td class="pname">Samuel Benoit</td><td style="text-align:center"><span class="pill" style="background:var(--bg-hover);color:var(--text);border:1px solid var(--border);">7</span></td><td class="col-detail"><span class="detail-tag">M11:5(HDM)·M13:1·M14:1</span></td></tr>
+                <tr><td class="rank">#8</td><td class="pname">Guillermo Gonzalez</td><td style="text-align:center"><span class="pill" style="background:var(--bg-hover);color:var(--text);border:1px solid var(--border);">4</span></td><td class="col-detail"><span class="detail-tag">M5:1·M14:3(HDM)</span></td></tr>
+                <tr><td class="rank">#9</td><td class="pname">Joseph Junior Pierre</td><td style="text-align:center"><span class="pill" style="background:var(--bg-hover);color:var(--text);border:1px solid var(--border);">3</span></td><td class="col-detail"><span class="detail-tag">M6:1·M13:2(HDM)</span></td></tr>
+                <tr><td class="rank">#10</td><td class="pname">Mouad Youness</td><td style="text-align:center"><span class="pill" style="background:var(--bg-hover);color:var(--text);border:1px solid var(--border);">2</span></td><td class="col-detail"><span class="detail-tag">M7:2</span></td></tr>
+                <tr><td class="rank">#10</td><td class="pname">Laurent Côté</td><td style="text-align:center"><span class="pill" style="background:var(--bg-hover);color:var(--text);border:1px solid var(--border);">2</span></td><td class="col-detail"><span class="detail-tag">M6:1·M7:1</span></td></tr>
+                <tr><td class="rank">#12</td><td class="pname">Massil Nait Atmane</td><td style="text-align:center"><span class="pill" style="background:var(--bg-hover);color:var(--text);border:1px solid var(--border);">1</span></td><td class="col-detail"><span class="detail-tag">M4:1</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <nav class="bottom-nav">
+    <div class="bnav-inner">
+      <button class="bnav-btn active" data-tab="home" onclick="nav(this,'home')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        <span>Bord</span>
+      </button>
+      <button class="bnav-btn" data-tab="joueurs" onclick="nav(this,'joueurs')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+        <span>Effectif</span>
+      </button>
+      <button class="bnav-btn" data-tab="mvp" onclick="nav(this,'mvp')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <span>Honneurs</span>
+      </button>
+      <button class="bnav-btn" data-tab="bilan" onclick="nav(this,'bilan')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        <span>Bilan</span>
+      </button>
+      <button class="bnav-btn" data-tab="statsindiv" onclick="nav(this,'statsindiv')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <span>MVP</span>
+      </button>
+      <button class="bnav-btn" data-tab="buteurs" onclick="nav(this,'buteurs')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        <span>Buts</span>
+      </button>
+      <button class="bnav-btn" data-tab="passeurs" onclick="nav(this,'passeurs')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+        <span>Passeurs</span>
+      </button>
+    </div>
+  </nav>
+</div>
+
+<div class="toast" id="toast">Lien copié ✓</div>
+
+<script>
+const players=[
+  {name:"Merouane Amalou",goals:0,assists:1,hdm:1,nominations:9,matches:13,detailButs:"-",detailAssists:"M10",note:"Gardien de but"},
+  {name:"Amir Riahi",goals:7,assists:2,hdm:1,nominations:10,matches:13,detailButs:"M4,M6,M7(x3),M9,M10",detailAssists:"M4,M8"},
+  {name:"Zouhair El Mahdi",goals:5,assists:7,hdm:2,nominations:14,matches:13,detailButs:"M4(x2),M5,M8,M12",detailAssists:"M4,M6,M7,M10,M11,M12,M14"},
+  {name:"Joseph Junior Pierre",goals:0,assists:3,hdm:1,nominations:3,matches:13,detailButs:"-",detailAssists:"M9(x2),M10"},
+  {name:"Christophe Larouche",goals:10,assists:1,hdm:3,nominations:21,matches:12,detailButs:"M3,M6,M8,M10(x3),M12(x3),M14",detailAssists:"M6"},
+  {name:"Dylan Lafleur",goals:2,assists:0,hdm:0,nominations:0,matches:12,detailButs:"M6,M14",detailAssists:"-"},
+  {name:"Wassim Aloui",goals:1,assists:1,hdm:1,nominations:10,matches:12,detailButs:"M3",detailAssists:"M4"},
+  {name:"Samuel Benoit",goals:1,assists:0,hdm:1,nominations:7,matches:9,detailButs:"M11",detailAssists:"-"},
+  {name:"Laurent Côté",goals:0,assists:2,hdm:0,nominations:2,matches:9,detailButs:"-",detailAssists:"M3,M6"},
+  {name:"Raid Youssfi",goals:5,assists:3,hdm:1,nominations:7,matches:7,detailButs:"M7,M9(x2),M10,M12",detailAssists:"M10,M12(x2)"},
+  {name:"Massil Nait Atmane",goals:0,assists:0,hdm:0,nominations:1,matches:5,detailButs:"-",detailAssists:"-",note:"Gardien de but"},
+  {name:"Anthony Linteau",goals:0,assists:0,hdm:0,nominations:0,matches:4,detailButs:"-",detailAssists:"-"},
+  {name:"Guillermo Gonzalez",goals:0,assists:0,hdm:1,nominations:4,matches:4,detailButs:"-",detailAssists:"-",note:"Gardien de but"},
+  {name:"Mouad Youness",goals:0,assists:1,hdm:0,nominations:2,matches:2,detailButs:"-",detailAssists:"M7"},
+];
+
+function buildTables(){
+  function getRank(arr, index, key){
+    const val = arr[index][key];
+    return arr.filter(p => p[key] > val).length + 1;
+  }
+
+  // Buteurs
+  const bt=document.getElementById('buteurs-table');
+  bt.innerHTML='<thead><tr><th>Rang</th><th>Joueur</th><th style="text-align:center">Buts</th><th class="col-detail">Détail</th></tr></thead>';
+  const tb=document.createElement('tbody');
+  const buteurs=[...players].filter(p=>p.goals>0).sort((a,b)=>b.goals-a.goals);
+  buteurs.forEach((p,i)=>{
+    const rang=getRank(buteurs,i,'goals');
+    const pillClass=rang===1?'pill-primary':rang===2?'pill-gold':'pill-blue';
+    tb.innerHTML+=`<tr><td class="rank">#${rang}</td><td class="pname">${p.name}</td><td style="text-align:center"><span class="pill ${pillClass}">${p.goals}</span></td><td class="col-detail"><span class="detail-tag">${p.detailButs}</span></td></tr>`;
+  });
+  bt.appendChild(tb);
+
+  // Passeurs
+  const pt=document.getElementById('passeurs-table');
+  pt.innerHTML='<thead><tr><th>Rang</th><th>Joueur</th><th style="text-align:center">Passes</th><th class="col-detail">Détail</th></tr></thead>';
+  const pb=document.createElement('tbody');
+  const passeurs=[...players].filter(p=>p.assists>0).sort((a,b)=>b.assists-a.assists);
+  passeurs.forEach((p,i)=>{
+    const rang=getRank(passeurs,i,'assists');
+    const pillClass=rang===1?'pill-primary':rang===2?'pill-gold':'pill-blue';
+    pb.innerHTML+=`<tr><td class="rank">#${rang}</td><td class="pname">${p.name}</td><td style="text-align:center"><span class="pill ${pillClass}">${p.assists}</span></td><td class="col-detail"><span class="detail-tag">${p.detailAssists}</span></td></tr>`;
+  });
+  pt.appendChild(pb);
+
+  // Effectif
+  const jt=document.getElementById('joueurs-table');
+  jt.innerHTML='<thead><tr><th>Joueur</th><th style="text-align:center">MJ</th><th style="text-align:center">Buts</th><th style="text-align:center">Passes</th></tr></thead>';
+  const jb=document.createElement('tbody');
+  [...players].sort((a,b)=>b.matches-a.matches).forEach(p=>{
+    const noteTag = p.note ? `<span style="font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:2px 7px;border-radius:6px;background:rgba(22,163,74,.1);color:var(--green);margin-left:6px;">${p.note}</span>` : '';
+    jb.innerHTML+=`<tr>
+      <td class="pname">${p.name}${noteTag}</td>
+      <td style="text-align:center;color:var(--text-secondary);">${p.matches}</td>
+      <td style="text-align:center">${p.goals>0?`<span class="pill pill-green" style="font-size:16px;padding:1px 10px;">${p.goals}</span>`:'<span style="color:var(--text-muted);">—</span>'}</td>
+      <td style="text-align:center">${p.assists>0?`<span class="pill pill-blue" style="font-size:16px;padding:1px 10px;">${p.assists}</span>`:'<span style="color:var(--text-muted);">—</span>'}</td>
+    </tr>`;
+  });
+  jt.appendChild(jb);
+}
+
+function buildHDM(){
+  const sorted=[...players].filter(p=>p.hdm>0).sort((a,b)=>{
+    const order={"Christophe Larouche":0,"Zouhair El Mahdi":1,"Amir Riahi":2};
+    const ao=order[a.name]??99, bo=order[b.name]??99;
+    if(ao!==bo) return ao-bo;
+    return b.hdm-a.hdm;
+  });
+  const hdmPodium=document.getElementById('hdm-podium');
+  if(hdmPodium) sorted.slice(0,3).forEach((p,i)=>{
+    hdmPodium.innerHTML+=`<div style="border-left:3px solid var(--gold);padding-left:16px;">
+      <div class="tag" style="margin-bottom:6px;">Position #${i+1}</div>
+      <div class="pname" style="font-size:20px;margin-bottom:4px;">${p.name}</div>
+      <div class="stat-num" style="color:var(--gold);font-size:32px;">${p.hdm} <span style="font-size:12px;color:var(--text-muted);font-style:normal;font-weight:400;">HDM</span></div>
+    </div>`;
+  });
+}
+
+function buildInfluence(){
+  const data=[
+    {name:"Christophe Larouche",val:80,color:"var(--blue)",tag:"Moteur Offensif"},
+    {name:"Zouhair El Mahdi",val:75,color:"var(--green)",tag:"Plaque Tournante"},
+    {name:"Amir Riahi",val:70,color:"#f59e0b",tag:"Finisseur Clinique"},
+    {name:"Joseph Junior Pierre",val:65,color:"#7c3aed",tag:"Force Tranquille"},
+    {name:"Merouane Amalou",val:65,color:"var(--text-secondary)",tag:"Dernier Rempart"},
+  ];
+  const c=document.getElementById('influence-bars');
+  data.forEach(d=>{
+    c.innerHTML+=`<div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+          <span class="pname" style="font-size:16px;">${d.name}</span>
+          <span style="font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:2px 8px;border-radius:6px;background:var(--bg-hover);color:var(--text-secondary);">${d.tag}</span>
+        </div>
+        <span style="font-size:12px;color:var(--text-secondary);margin-left:8px;">${d.val}%</span>
+      </div>
+      <div class="bar-wrap"><div class="bar-fill" style="width:${d.val}%;background:${d.color};"></div></div>
+    </div>`;
+  });
+}
+
+function nav(el, tabId){
+  document.querySelectorAll('[id^="tab-"]').forEach(t=>t.style.display='none');
+  document.getElementById('tab-'+tabId).style.display='block';
+  document.querySelectorAll('.nav-btn,.bnav-btn').forEach(b=>{
+    b.classList.toggle('active', b.dataset.tab===tabId);
+  });
+  window.scrollTo(0,0);
+}
+
+function navTo(tabId){
+  const btn=document.querySelector('[data-tab='+tabId+']');
+  if(btn) nav(btn, tabId);
+}
+
+function share(){
+  const url=window.location.href;
+  if(navigator.share){
+    navigator.share({title:'SLFC 2 — Bilan Hiver 25-26',url}).catch(()=>{});
+  } else if(navigator.clipboard){
+    navigator.clipboard.writeText(url).then(()=>{
+      const t=document.getElementById('toast');
+      t.classList.add('show');
+      setTimeout(()=>t.classList.remove('show'),2500);
+    });
+  }
+}
+
+buildTables();
+buildHDM();
+buildInfluence();
+</script>
+</body>
+</html>
